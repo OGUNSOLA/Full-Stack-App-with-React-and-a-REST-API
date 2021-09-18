@@ -12,11 +12,13 @@ import NotFound from "./Components/NotFound";
 import UserSignUp from "./Components/UserSignUp";
 import UserSignIn from "./Components/UserSignIn";
 import UserSignOut from "./Components/UserSignOut";
+import Authenticated from "./Components/Authenticated";
 
 const PublicWithContext = WithContext(Public);
 const UserSignInWithContext = WithContext(UserSignIn);
 const UserSignOutWithContext = WithContext(UserSignOut);
 const UserSignUpWithContext = WithContext(UserSignUp);
+const AuthenticatedWithContext = WithContext(Authenticated);
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/signin" component={UserSignInWithContext} />
           <Route path="/signup" component={UserSignUpWithContext} />
           <Route path="/signout" component={UserSignOutWithContext} />
+          <Route path="/authenticated" component={AuthenticatedWithContext} />
+
           <Route component={NotFound} />
         </Switch>
       </div>

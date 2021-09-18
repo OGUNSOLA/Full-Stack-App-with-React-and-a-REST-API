@@ -79,7 +79,8 @@ export default class UserSignIn extends Component {
             };
           });
         } else {
-          console.log("successful");
+          this.props.history.push("/authenticated");
+          // console.log(user);
         }
       })
       .catch((error) => {

@@ -1,5 +1,7 @@
 /** @format */
 
-export default {
+const config = {
   apiBaseUrl: "http://localhost:3300/api",
 };
+
+export default config;

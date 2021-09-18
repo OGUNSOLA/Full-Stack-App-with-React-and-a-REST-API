@@ -20,11 +20,11 @@ export default function Form(props) {
       <ErrorsDisplay errors={errors} />
       <form onSubmit={handleSubmit}>
         {elements()}
-        <div className="pad-bottom">
+        <div>
           <button className="button" type="submit">
             {submitButtonText}
           </button>
-          <button className="button button-secondary" onClick={handleCancel}>
+          <button className="button " onClick={handleCancel}>
             Cancel
           </button>
         </div>
@@ -39,8 +39,8 @@ function ErrorsDisplay({ errors }) {
   if (errors.length) {
     errorsDisplay = (
       <div>
-        <h2 className="validation--errors--label">Validation errors</h2>
-        <div className="validation-errors">
+        <h2>Validation errors</h2>
+        <div>
           <ul>
             {errors.map((error, i) => (
               <li key={i}>{error}</li>
