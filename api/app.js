@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const models = require("./models");
 const routes = require("./routes");
 const auth = require("./middleWare/auth-user");
-import cors from "cors";
+const cors = require("cors");
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -60,7 +60,7 @@ app.use((err, req, res, next) => {
 });
 
 // set our port
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3300);
 
 // start listening on our port
 const server = app.listen(app.get("port"), () => {
