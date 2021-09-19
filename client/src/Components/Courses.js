@@ -6,10 +6,7 @@ function Courses({ context }) {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    context.data
-      .getCourses()
-      .then((courses) => setCourses(courses))
-      .catch((err) => err.history.push("./error"));
+    context.data.getCourses().then((courses) => setCourses(courses));
   }, [context.data, courses]);
   return (
     <div>
