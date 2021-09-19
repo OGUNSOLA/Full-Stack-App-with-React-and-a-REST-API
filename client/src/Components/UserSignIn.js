@@ -79,8 +79,7 @@ export default class UserSignIn extends Component {
             };
           });
         } else {
-          this.props.history.push("/authenticated");
-          // console.log(user);
+          this.props.history.push("/courses");
         }
       })
       .catch((error) => {
