@@ -1,24 +1,25 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
+import Course from "./Course";
 
 function Courses({ context }) {
   const [courses, setCourses] = useState([]);
+  console.log(context);
 
   useEffect(() => {
     context.data.getCourses().then((courses) => setCourses(courses));
-  }, [context.data, courses]);
+  }, []);
   return (
     <div>
       {courses.map((course) => {
         return (
-          <div className="course" key={course.id}>
-            <li>{course.id}</li>
-            <li>{course.title}</li>
-            <li>{course.description}</li>
-            <li>{course.estimatedTime}</li>
-            ==========================
-          </div>
+          <Course
+            title={course.title}
+            estimatedTime={course.estimatedTime}
+            key={course.id}
+            id={course.id}
+          />
         );
       })}
     </div>

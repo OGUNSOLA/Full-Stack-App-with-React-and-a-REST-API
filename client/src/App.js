@@ -14,6 +14,7 @@ import UserSignIn from "./Components/UserSignIn";
 import UserSignOut from "./Components/UserSignOut";
 import Authenticated from "./Components/Authenticated";
 import Courses from "./Components/Courses";
+import CourseDetails from "./Components/CourseDetails";
 
 const PublicWithContext = WithContext(Public);
 const UserSignInWithContext = WithContext(UserSignIn);
@@ -21,6 +22,7 @@ const UserSignOutWithContext = WithContext(UserSignOut);
 const UserSignUpWithContext = WithContext(UserSignUp);
 const AuthenticatedWithContext = WithContext(Authenticated);
 const CoursesWithContext = WithContext(Courses);
+const CourseDetailsWithContext = WithContext(CourseDetails);
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route path="/signup" component={UserSignUpWithContext} />
           <Route path="/signout" component={UserSignOutWithContext} />
           <Route path="/courses" component={CoursesWithContext} />
+          <Route path="/courses/:id" component={CourseDetailsWithContext} />
 
           <Route component={NotFound} />
         </Switch>
