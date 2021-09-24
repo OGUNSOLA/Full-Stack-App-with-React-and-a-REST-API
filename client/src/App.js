@@ -7,36 +7,44 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import WithContext from "./Context";
 
 import Header from "./Components/Header";
-import Public from "./Components/Public";
 import NotFound from "./Components/NotFound";
 import UserSignUp from "./Components/UserSignUp";
 import UserSignIn from "./Components/UserSignIn";
 import UserSignOut from "./Components/UserSignOut";
-import Authenticated from "./Components/Authenticated";
 import Courses from "./Components/Courses";
 import CourseDetails from "./Components/CourseDetails";
+import UpdateCourse from "./Components/UpdateCourse";
 
-const PublicWithContext = WithContext(Public);
 const UserSignInWithContext = WithContext(UserSignIn);
 const UserSignOutWithContext = WithContext(UserSignOut);
 const UserSignUpWithContext = WithContext(UserSignUp);
-const AuthenticatedWithContext = WithContext(Authenticated);
 const CoursesWithContext = WithContext(Courses);
 const CourseDetailsWithContext = WithContext(CourseDetails);
+const HeaderWithContext = WithContext(Header);
+const UpdateCourseWithContext = WithContext(UpdateCourse);
 
 function App() {
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <HeaderWithContext />
 
         <Switch>
-          <Route exact path="/" component={PublicWithContext} />
+          <Route exact path="/" component={CoursesWithContext} />
           <Route path="/signin" component={UserSignInWithContext} />
           <Route path="/signup" component={UserSignUpWithContext} />
           <Route path="/signout" component={UserSignOutWithContext} />
           <Route exact path="/courses" component={CoursesWithContext} />
-          <Route path="/courses/:id" component={CourseDetailsWithContext} />
+          <Route
+            exact
+            path="/courses/:id"
+            component={CourseDetailsWithContext}
+          />
+          <Route
+            exact
+            path="/courses/:id/update"
+            component={UpdateCourseWithContext}
+          />
 
           <Route component={NotFound} />
         </Switch>

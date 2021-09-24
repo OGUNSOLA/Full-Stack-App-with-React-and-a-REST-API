@@ -48,7 +48,7 @@ export default class Data {
   }
 
   // create a user
-  async createUser(emailAddress, password, user) {
+  async createUser(user) {
     const response = await this.api("/users", "POST", user);
     if (response.status === 201) {
       return [];
@@ -99,8 +99,8 @@ export default class Data {
   }
 
   // Edit a course
-  async editACourse(emailAddress, password, id) {
-    const response = await this.api(`/courses/${id}`, "PUT", true, {
+  async editACourse(emailAddress, password, id,course) {
+    const response = await this.api(`/courses/${id}`, "PUT",course, true, {
       emailAddress,
       password,
     });
