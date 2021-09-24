@@ -73,7 +73,7 @@ export default class Data {
 
   // get a single course with id
   async getACourse(id) {
-    const response = await this.api(`/course/${id}`, "GET");
+    const response = await this.api(`/courses/${id}`, "GET");
     if (response.status === 200) {
       return response.json().then((data) => data);
     } else {
@@ -121,6 +121,7 @@ export default class Data {
       emailAddress,
       password,
     });
+    console.log(response);
     if (response.status === 204) {
       return [];
     } else if (response.status === 400) {

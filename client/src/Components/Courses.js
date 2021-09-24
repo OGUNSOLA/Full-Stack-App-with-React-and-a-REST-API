@@ -5,7 +5,6 @@ import Course from "./Course";
 
 function Courses({ context }) {
   const [courses, setCourses] = useState([]);
-  console.log(context);
 
   useEffect(() => {
     context.data.getCourses().then((courses) => setCourses(courses));
