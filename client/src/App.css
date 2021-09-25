@@ -154,3 +154,23 @@ table {
   color: white;
   text-transform: capitalize;
 }
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.signInFormWrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 40%;
+}
+
+.btns {
+  margin: 0 auto;
+}
+
+.button {
+  width: 200px;
+}

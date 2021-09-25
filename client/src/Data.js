@@ -99,8 +99,8 @@ export default class Data {
   }
 
   // Edit a course
-  async editACourse(emailAddress, password, id,course) {
-    const response = await this.api(`/courses/${id}`, "PUT",course, true, {
+  async editACourse(emailAddress, password, id, course) {
+    const response = await this.api(`/courses/${id}`, "PUT", course, true, {
       emailAddress,
       password,
     });
@@ -117,7 +117,7 @@ export default class Data {
 
   // DELETE a course
   async deleteACourse(emailAddress, password, id) {
-    const response = await this.api(`/courses/${id}`, "DELETE", true, {
+    const response = await this.api(`/courses/${id}`, "DELETE", null, true, {
       emailAddress,
       password,
     });

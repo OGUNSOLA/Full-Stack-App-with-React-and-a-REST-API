@@ -16,31 +16,38 @@ export default class UserSignIn extends Component {
 
     return (
       <div>
-        <div>
+        <div className="signInFormWrapper">
           <h1> Sign In </h1>{" "}
           <Form
+            className="form"
             cancel={this.cancel}
             errors={errors}
             submit={this.submit}
             submitButtonText="Sign In"
             elements={() => (
               <React.Fragment>
-                <input
-                  id="emailAddress"
-                  name="emailAddress"
-                  type="text"
-                  value={emailAddress}
-                  onChange={this.change}
-                  placeholder="User Name"
-                />
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={this.change}
-                  placeholder="Password"
-                />
+                <label>
+                  Username
+                  <input
+                    id="emailAddress"
+                    name="emailAddress"
+                    type="text"
+                    value={emailAddress}
+                    onChange={this.change}
+                    placeholder="User Name"
+                  />
+                </label>
+                <label>
+                  Password
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={this.change}
+                    placeholder="Password"
+                  />
+                </label>
               </React.Fragment>
             )}
           />{" "}

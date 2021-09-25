@@ -14,6 +14,7 @@ import UserSignOut from "./Components/UserSignOut";
 import Courses from "./Components/Courses";
 import CourseDetails from "./Components/CourseDetails";
 import UpdateCourse from "./Components/UpdateCourse";
+import Delete from "./Components/Delete";
 
 const UserSignInWithContext = WithContext(UserSignIn);
 const UserSignOutWithContext = WithContext(UserSignOut);
@@ -22,6 +23,7 @@ const CoursesWithContext = WithContext(Courses);
 const CourseDetailsWithContext = WithContext(CourseDetails);
 const HeaderWithContext = WithContext(Header);
 const UpdateCourseWithContext = WithContext(UpdateCourse);
+const DeleteCourseWithContext = WithContext(Delete);
 
 function App() {
   return (
@@ -35,6 +37,10 @@ function App() {
           <Route path="/signup" component={UserSignUpWithContext} />
           <Route path="/signout" component={UserSignOutWithContext} />
           <Route exact path="/courses" component={CoursesWithContext} />
+          <Route
+            path="/courses/:id/delete"
+            component={DeleteCourseWithContext}
+          />
           <Route
             exact
             path="/courses/:id"

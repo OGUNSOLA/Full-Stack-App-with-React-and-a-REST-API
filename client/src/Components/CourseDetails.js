@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 
 function CourseDetails({ context, match }) {
   const [course, setCourse] = useState([]);
+  const [author, setAuthor] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
   const id = match.params.id;
@@ -16,13 +17,16 @@ function CourseDetails({ context, match }) {
       setCourse(course);
       setFirstName(course.user.firstName);
       setLastname(course.user.lastName);
+      String(course.user.id) === String(localStorage.userId)
+        ? setAuthor(true)
+        : setAuthor(false);
     });
   }, []);
   return (
     <div>
       <div className="actions">
         <Link to={`/courses/${course.id}/update`}>UPDATE COURSE</Link>
-        <Link to={`${course.id}/delete`}>DELETE COURSE</Link>
+        {author ? <Link to={`${course.id}/delete`}>DELETE COURSE</Link> : null}
         <Link to="/courses">BACK TO COURSE LIST</Link>
       </div>
       <div className="couseDetails">
@@ -43,9 +47,6 @@ function CourseDetails({ context, match }) {
           </div>
           <div className="materialsNeeded">
             <h1>MATERIALS NEEDED</h1>
-            {/* {course.materialsNeeded.map((material) => {
-              return <li>{material}</li>;
-            })} */}
             <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
           </div>
         </div>

@@ -5,9 +5,8 @@ import Form from "./Form";
 
 function UpdateCourse({ context, history, match }) {
   const courseId = match.params.id;
-  const authUser = context.authenticatedUser;
   const authUserId = context.authenticatedUser.id;
-
+  const { username, password } = context.credentials;
   const [courseTitle, setCourseTitle] = useState("");
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
@@ -39,9 +38,26 @@ function UpdateCourse({ context, history, match }) {
   };
 
   const submit = () => {
-    const { emailAddress, password } = authUser;
-    console.log(emailAddress);
-    console.log(password);
+    const course = {
+      title: courseTitle,
+      description,
+      materialsNeeded,
+      estimatedTime,
+    };
+
+    context.data
+      .editACourse(username, password, courseId, course)
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors);
+        } else {
+          history.push(`/courses/${courseId}`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        this.props.history.push("/error");
+      });
   };
 
   useEffect(() => {

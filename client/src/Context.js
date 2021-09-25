@@ -10,7 +10,8 @@ export class Provider extends Component {
     super();
     this.data = new Data();
     this.state = {
-      authenticatedUser: null,
+      authenticatedUser: localStorage.getItem("authUser") || null,
+      credentials: null,
     };
   }
 
@@ -23,6 +24,10 @@ export class Provider extends Component {
         signIn: this.signIn,
         signOut: this.signOut,
       },
+      credentials: {
+        username: localStorage.username,
+        password: localStorage.password,
+      },
     };
     return (
       <Context.Provider value={value}>{this.props.children}</Context.Provider>
@@ -32,16 +37,32 @@ export class Provider extends Component {
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
     if (user !== null) {
+      localStorage.setItem("authUser", JSON.stringify(user));
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
       this.setState(() => {
         return {
-          authenticatedUser: user,
+          authenticatedUser: JSON.parse(localStorage.authUser),
+          credentials: {
+            username: localStorage.username,
+            password: localStorage.password,
+          },
         };
       });
     }
     return user;
   };
 
-  signOut = () => {};
+  signOut = () => {
+    this.setState(() => {
+      localStorage.clear();
+      return {
+        authenticatedUser: null,
+        credentials: null,
+      };
+    });
+  };
 }
 
 export const Consumer = Context.Consumer;

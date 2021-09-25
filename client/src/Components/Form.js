@@ -18,9 +18,9 @@ export default function Form(props) {
   return (
     <div>
       <ErrorsDisplay errors={errors} />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="formWrapper">
         {elements()}
-        <div>
+        <div className="btns">
           <button className="button" type="submit">
             {submitButtonText}
           </button>
