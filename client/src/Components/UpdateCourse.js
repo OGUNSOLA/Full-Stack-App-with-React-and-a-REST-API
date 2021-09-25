@@ -12,25 +12,21 @@ function UpdateCourse({ context, history, match }) {
   const [estimatedTime, setEstimatedTime] = useState("");
   const [materialsNeeded, setMaterialsNeeded] = useState("");
   const [errors, setErrors] = useState([]);
-  const [courseOwner, setOwner] = useState([]);
+  const [courseOwner] = useState([]);
 
   //CHANGE HANDLERS
 
   const handleCourseTitleChange = (e) => {
     setCourseTitle(e.target.value);
-    console.log(courseTitle);
   };
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
-    console.log(description);
   };
   const handleEstimatedTimeChange = (e) => {
     setEstimatedTime(e.target.value);
-    console.log(estimatedTime);
   };
   const handleMaterialsNeededChange = (e) => {
     setMaterialsNeeded(e.target.value);
-    console.log(materialsNeeded);
   };
 
   const cancel = () => {

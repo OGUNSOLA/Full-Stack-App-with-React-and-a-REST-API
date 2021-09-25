@@ -174,3 +174,12 @@ table {
 .button {
   width: 200px;
 }
+
+.createCourse {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  background-color: mediumpurple;
+  justify-content: space-between;
+  padding: 20px;
+}

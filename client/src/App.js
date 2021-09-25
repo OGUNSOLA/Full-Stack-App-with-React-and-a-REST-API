@@ -13,8 +13,10 @@ import UserSignIn from "./Components/UserSignIn";
 import UserSignOut from "./Components/UserSignOut";
 import Courses from "./Components/Courses";
 import CourseDetails from "./Components/CourseDetails";
+import CreateCourse from "./Components/CreateCourse";
 import UpdateCourse from "./Components/UpdateCourse";
 import Delete from "./Components/Delete";
+import PrivateRoute from "./PrivateRoute";
 
 const UserSignInWithContext = WithContext(UserSignIn);
 const UserSignOutWithContext = WithContext(UserSignOut);
@@ -24,6 +26,7 @@ const CourseDetailsWithContext = WithContext(CourseDetails);
 const HeaderWithContext = WithContext(Header);
 const UpdateCourseWithContext = WithContext(UpdateCourse);
 const DeleteCourseWithContext = WithContext(Delete);
+const CreateCourseWithContext = WithContext(CreateCourse);
 
 function App() {
   return (
@@ -32,25 +35,32 @@ function App() {
         <HeaderWithContext />
 
         <Switch>
-          <Route exact path="/" component={CoursesWithContext} />
-          <Route path="/signin" component={UserSignInWithContext} />
-          <Route path="/signup" component={UserSignUpWithContext} />
-          <Route path="/signout" component={UserSignOutWithContext} />
+          <Route exact path="/" component={Courses} />
           <Route exact path="/courses" component={CoursesWithContext} />
-          <Route
-            path="/courses/:id/delete"
-            component={DeleteCourseWithContext}
+
+          <PrivateRoute
+            exact
+            path="/courses/create"
+            component={CreateCourseWithContext}
           />
-          <Route
+
+          <PrivateRoute
+            path="/courses/:id/update"
+            component={UpdateCourseWithContext}
+          />
+          <PrivateRoute
             exact
             path="/courses/:id"
             component={CourseDetailsWithContext}
           />
-          <Route
+          <PrivateRoute
             exact
-            path="/courses/:id/update"
-            component={UpdateCourseWithContext}
+            path="/courses/:id/delete"
+            component={DeleteCourseWithContext}
           />
+          <Route path="/signin" component={UserSignInWithContext} />
+          <Route path="/signup" component={UserSignUpWithContext} />
+          <Route path="/signout" component={UserSignOutWithContext} />
 
           <Route component={NotFound} />
         </Switch>

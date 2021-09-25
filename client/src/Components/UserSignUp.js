@@ -79,6 +79,10 @@ export default class UserSignUp extends Component {
     });
   };
 
+  cancel = () => {
+    this.props.history.push("/");
+  };
+
   submit = () => {
     const { context } = this.props;
     const { firstName, lastName, emailAddress, password } = this.state;
