@@ -5,7 +5,10 @@ import React from "react";
 function Errors() {
   return (
     <div>
-      <p> An error occured !</p>
+      <p>
+        {" "}
+        <strong>An error occured !</strong>
+      </p>
     </div>
   );
 }
