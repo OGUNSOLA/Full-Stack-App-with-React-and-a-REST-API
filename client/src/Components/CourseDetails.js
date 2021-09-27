@@ -5,7 +5,7 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
-function CourseDetails({ context, match }) {
+function CourseDetails({ context, match, history }) {
   const [course, setCourse] = useState([]);
   const [author, setAuthor] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -13,32 +13,45 @@ function CourseDetails({ context, match }) {
   const id = match.params.id;
 
   useEffect(() => {
-    context.data.getACourse(id).then((course) => {
-      setCourse(course);
-      setFirstName(course.user.firstName);
-      setLastname(course.user.lastName);
-      String(course.user.id) === String(localStorage.userId)
-        ? setAuthor(true)
-        : setAuthor(false);
-    });
+    context.data
+      .getACourse(id)
+      .then((course) => {
+        setCourse(course);
+        setFirstName(course.user.firstName);
+        setLastname(course.user.lastName);
+        String(course.user.id) === String(localStorage.userId)
+          ? setAuthor(true)
+          : setAuthor(false);
+      })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          history.push("/notfound");
+        } else {
+          history.push("/error");
+        }
+      });
   }, []);
   return (
-    <div>
+    <div className="detailsWrapper">
       <div className="actions">
-        <Link to={`/courses/${course.id}/update`}>UPDATE COURSE</Link>
+        {author ? (
+          <Link to={`/courses/${course.id}/update`}>UPDATE COURSE</Link>
+        ) : null}
         {author ? <Link to={`${course.id}/delete`}>DELETE COURSE</Link> : null}
-        <Link to="/courses">BACK TO COURSE LIST</Link>
+        <Link to="/">RETURN TO LIST</Link>
       </div>
-      <div className="couseDetails">
-        <h1>COURSE</h1>
+      <div className="headline">
+        <h1>Course Detail</h1>
+      </div>
+      <div className="courseDetails">
         <div className="aboutCourse">
-          <h1>{course.title}</h1>
+          <h1 className="courseHeading">COURSE</h1>
+          <h1 className="courseTitle">{course.title}</h1>
           <h4>
             By: {firstName} {lastName}
           </h4>
-          <h4>{course.firstName}</h4>
-          <h4>{course.lastName}</h4>
-          <p>{course.description}</p>
+
+          <ReactMarkdown>{course.description}</ReactMarkdown>
         </div>
         <div className="otherDetails">
           <div className="time">

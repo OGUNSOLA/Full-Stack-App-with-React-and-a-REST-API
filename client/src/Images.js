@@ -10,13 +10,12 @@ import image7 from "./images/img_7.png";
 import image8 from "./images/img_8.png";
 import image9 from "./images/img_9.png";
 import image10 from "./images/img_10.png";
-import image17 from "./images/img_11.png";
-import image11 from "./images/img_12.png";
-import image12 from "./images/img_13.png";
-import image13 from "./images/img_14.png";
-import image14 from "./images/img_15.png";
-import image15 from "./images/img_16.png";
-import image16 from "./images/img_17.png";
+import image11 from "./images/img_11.png";
+import image12 from "./images/img_12.png";
+import image13 from "./images/img_13.png";
+import image14 from "./images/img_14.png";
+import image15 from "./images/img_15.png";
+import image16 from "./images/img_16.png";
 
 const images = [
   image1,
@@ -35,7 +34,6 @@ const images = [
   image14,
   image15,
   image16,
-  image17,
 ];
 
 export default images;

@@ -17,6 +17,9 @@ import CreateCourse from "./Components/CreateCourse";
 import UpdateCourse from "./Components/UpdateCourse";
 import Delete from "./Components/Delete";
 import PrivateRoute from "./PrivateRoute";
+import Forbidden from "./Components/Forbidden";
+import Footer from "./Components/Footer";
+import Errors from "./Components/Errors";
 
 const UserSignInWithContext = WithContext(UserSignIn);
 const UserSignOutWithContext = WithContext(UserSignOut);
@@ -27,28 +30,27 @@ const HeaderWithContext = WithContext(Header);
 const UpdateCourseWithContext = WithContext(UpdateCourse);
 const DeleteCourseWithContext = WithContext(Delete);
 const CreateCourseWithContext = WithContext(CreateCourse);
+const FooterCourseWithContext = WithContext(Footer);
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className="mainWrapper">
         <HeaderWithContext />
 
         <Switch>
-          <Route exact path="/" component={Courses} />
-          <Route exact path="/courses" component={CoursesWithContext} />
+          <Route exact path="/" component={CoursesWithContext} />
 
           <PrivateRoute
-            exact
             path="/courses/create"
             component={CreateCourseWithContext}
           />
 
-          <PrivateRoute
+          <Route
             path="/courses/:id/update"
             component={UpdateCourseWithContext}
           />
-          <PrivateRoute
+          <Route
             exact
             path="/courses/:id"
             component={CourseDetailsWithContext}
@@ -58,12 +60,14 @@ function App() {
             path="/courses/:id/delete"
             component={DeleteCourseWithContext}
           />
-          <Route path="/signin" component={UserSignInWithContext} />
-          <Route path="/signup" component={UserSignUpWithContext} />
-          <Route path="/signout" component={UserSignOutWithContext} />
-
-          <Route component={NotFound} />
+          <Route exact path="/signin" component={UserSignInWithContext} />
+          <Route exact path="/signup" component={UserSignUpWithContext} />
+          <Route exact path="/signout" component={UserSignOutWithContext} />
+          <Route exact path="/forbidden" component={Forbidden} />
+          <Route exact path="/notfound" component={NotFound} />
+          <Route component={Errors} />
         </Switch>
+        <Footer />
       </div>
     </BrowserRouter>
   );

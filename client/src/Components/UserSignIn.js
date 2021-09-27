@@ -15,7 +15,7 @@ export default class UserSignIn extends Component {
     const { emailAddress, password, errors } = this.state;
 
     return (
-      <div>
+      <div className="formArea">
         <div className="signInFormWrapper">
           <h1> Sign In </h1>{" "}
           <Form
@@ -26,28 +26,25 @@ export default class UserSignIn extends Component {
             submitButtonText="Sign In"
             elements={() => (
               <React.Fragment>
-                <label>
-                  Username
-                  <input
-                    id="emailAddress"
-                    name="emailAddress"
-                    type="text"
-                    value={emailAddress}
-                    onChange={this.change}
-                    placeholder="User Name"
-                  />
-                </label>
-                <label>
-                  Password
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={this.change}
-                    placeholder="Password"
-                  />
-                </label>
+                <label htmlFor="emailAddress">Email address</label>
+                <input
+                  id="emailAddress"
+                  name="emailAddress"
+                  type="text"
+                  value={emailAddress}
+                  onChange={this.change}
+                  placeholder="User Name"
+                />
+
+                <label htmlFor="password">Password:</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={this.change}
+                  placeholder="Password"
+                />
               </React.Fragment>
             )}
           />{" "}
@@ -86,12 +83,15 @@ export default class UserSignIn extends Component {
             };
           });
         } else {
-          this.props.history.push("/courses");
+          this.props.history.push("/");
         }
       })
       .catch((error) => {
-        console.error(error);
-        this.props.history.push("/error");
+        if (error.response.status === 401) {
+          this.setState("Invalid Sign in credentials");
+        } else {
+          this.props.history.push("/error");
+        }
       });
   };
 

@@ -12,7 +12,6 @@ function CreateCourse({ context, history }) {
   const [materialsNeeded, setMaterialsNeeded] = useState("");
   const { username, password } = context.credentials;
   const userId = context.userId;
-  console.log(context.authenticatedUser);
 
   const handleCourseTitleChange = (e) => {
     setCourseTitle(e.target.value);
@@ -59,8 +58,10 @@ function CreateCourse({ context, history }) {
         }
       })
       .catch((error) => {
-        console.log(error);
-        history.push("/error");
+        if (error.response.status === 400) {
+          console.error(error);
+          history.push("/error");
+        }
       });
   };
   return (
@@ -71,7 +72,8 @@ function CreateCourse({ context, history }) {
         submit={submit}
         submitButtonText="Create Course"
         elements={() => (
-          <>
+          <div className="createCourseWrapper">
+            <label for="courseTitle">Course Title</label>
             <input
               id="courseTitle"
               name="courseTitle"
@@ -80,6 +82,7 @@ function CreateCourse({ context, history }) {
               onChange={handleCourseTitleChange}
               placeholder="Title"
             />
+            <label for="Course Author">Course Title</label>
             <input
               id="courseAuthor"
               name="courseAuthor"
@@ -88,6 +91,7 @@ function CreateCourse({ context, history }) {
               onChange={handleCourseOwnerChange}
               placeholder="Author"
             />
+            <label for="courseDescription">CourseDescription</label>
             <textarea
               rows="15"
               id="courseDescription"
@@ -96,6 +100,8 @@ function CreateCourse({ context, history }) {
               onChange={handleDescriptionChange}
               placeholder="Course Description"
             />
+            <label for="estimatedTime">Estimated Time</label>
+
             <input
               id="estimatedTime"
               name="estimatedTime"
@@ -104,6 +110,8 @@ function CreateCourse({ context, history }) {
               onChange={handleEstimatedTimeChange}
               placeholder="Time to complete course (ie: 14 hours)"
             />
+            <label for="materialsNeeded">Materials Needed</label>
+
             <textarea
               rows="10"
               id="materialsNeeded"
@@ -113,7 +121,7 @@ function CreateCourse({ context, history }) {
               onChange={handleMaterialsNeededChange}
               placeholder="Materials Needed"
             />
-          </>
+          </div>
         )}
       />
     </div>

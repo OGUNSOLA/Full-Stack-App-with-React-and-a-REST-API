@@ -3,7 +3,11 @@
 import React from "react";
 
 function NotFound() {
-  return <div></div>;
+  return (
+    <div>
+      <p>The Course or user does not exist</p>
+    </div>
+  );
 }
 
 export default NotFound;

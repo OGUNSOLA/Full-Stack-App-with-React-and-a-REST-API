@@ -104,14 +104,18 @@ export default class Data {
       emailAddress,
       password,
     });
+    console.log(response.status);
     if (response.status === 204) {
       return [];
     } else if (response.status === 400) {
       return response.json().then((data) => {
+        console.log(data.errors);
         return data.errors;
       });
     } else {
-      throw new Error();
+      let err = new Error();
+      err.status = response.status;
+      throw err;
     }
   }
 
@@ -121,7 +125,6 @@ export default class Data {
       emailAddress,
       password,
     });
-    console.log(response);
     if (response.status === 204) {
       return [];
     } else if (response.status === 400) {

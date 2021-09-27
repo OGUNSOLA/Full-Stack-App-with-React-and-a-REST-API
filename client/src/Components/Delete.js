@@ -27,7 +27,7 @@ function Delete({ context, match, history }) {
   };
 
   return (
-    <div>
+    <div className="delete">
       <h1>ARE YOU SURE YOU WANT TO DELETE COURSE ?</h1>
       <Form
         cancel={cancel}

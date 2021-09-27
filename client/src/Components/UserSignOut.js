@@ -10,7 +10,7 @@ function UserSignOut({ context }) {
   }, []);
   return (
     <div>
-      <Redirect to="/signIn"></Redirect>
+      <Redirect to="/"></Redirect>
     </div>
   );
 }

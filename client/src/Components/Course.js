@@ -6,9 +6,9 @@ import images from "../Images";
 
 function Course(props) {
   const { title, estimatedTime, id } = props;
-  const image_index = Math.floor(Math.random() * 17);
+  const image_index = Math.floor(Math.random() * 16);
   return (
-    <div>
+    <div className="course">
       <Link to={`/courses/${id}`}>
         <img src={images[image_index]} alt="" />
         <div className="details">

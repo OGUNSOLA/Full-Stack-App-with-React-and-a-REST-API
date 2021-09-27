@@ -8,23 +8,24 @@ import { Link } from "react-router-dom";
 function Courses({ context }) {
   const [courses, setCourses] = useState([]);
   const authUser = context.authenticatedUser;
-  console.log("user", authUser);
 
   useEffect(() => {
     context.data.getCourses().then((courses) => setCourses(courses));
   }, []);
   return (
-    <div>
-      {courses.map((course) => {
-        return (
-          <Course
-            title={course.title}
-            estimatedTime={course.estimatedTime}
-            key={course.id}
-            id={course.id}
-          />
-        );
-      })}
+    <div className="mainContent">
+      <div className="coursesArea">
+        {courses.map((course) => {
+          return (
+            <Course
+              title={course.title}
+              estimatedTime={course.estimatedTime}
+              key={course.id}
+              id={course.id}
+            />
+          );
+        })}
+      </div>
       {authUser ? (
         <Link className="createCourse" to="/courses/create">
           <img src={plussign} alt="plus sign" />

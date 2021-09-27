@@ -10,7 +10,7 @@ export class Provider extends Component {
     super();
     this.data = new Data();
     this.state = {
-      authenticatedUser: localStorage.getItem("authUser") || null,
+      authenticatedUser: localStorage.getItem("authUser") || "",
       credentials: null,
       userId: localStorage.getItem("userId") || null,
     };
@@ -40,9 +40,10 @@ export class Provider extends Component {
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
     const firstName = user.firstName;
+    const userId = user.id;
     if (user !== null) {
       localStorage.setItem("authUser", firstName);
-      localStorage.setItem("userId", user.id);
+      localStorage.setItem("userId", userId);
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
 

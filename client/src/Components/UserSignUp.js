@@ -16,7 +16,7 @@ export default class UserSignUp extends Component {
     const { firstName, lastName, emailAddress, password, errors } = this.state;
 
     return (
-      <div>
+      <div className="signUpWrapper">
         <h1>Sign Up</h1>
         <Form
           cancel={this.cancel}
@@ -25,6 +25,7 @@ export default class UserSignUp extends Component {
           submitButtonText="Sign Up"
           elements={() => (
             <React.Fragment>
+              <label htmlFor="firstName">First name</label>
               <input
                 id="firstName"
                 name="firstName"
@@ -33,6 +34,8 @@ export default class UserSignUp extends Component {
                 onChange={this.change}
                 placeholder="First name"
               />
+              <label htmlFor="lastName">Last name</label>
+
               <input
                 id="lastName"
                 name="lastName"
@@ -41,14 +44,16 @@ export default class UserSignUp extends Component {
                 onChange={this.change}
                 placeholder="Last name"
               />
+              <label htmlFor="emailAddress">Email</label>
               <input
                 id="emailAddress"
                 name="emailAddress"
                 type="email"
                 value={emailAddress}
                 onChange={this.change}
-                placeholder="User Name"
+                placeholder="User Name(email addresa)"
               />
+              <label htmlFor="passwordpassword">Password</label>
               <input
                 id="password"
                 name="password"
@@ -100,8 +105,11 @@ export default class UserSignUp extends Component {
         }
       })
       .catch((err) => {
-        console.log(err);
-        this.props.history.push("/error");
+        if (err.response.statis === 400) {
+          this.props.history.push("/error");
+        } else {
+          this.props.history.push("/notfound");
+        }
       });
   };
 }

@@ -16,7 +16,7 @@ export default function Form(props) {
   }
 
   return (
-    <div>
+    <div className="form">
       <ErrorsDisplay errors={errors} />
       <form onSubmit={handleSubmit} className="formWrapper">
         {elements()}
@@ -38,7 +38,7 @@ function ErrorsDisplay({ errors }) {
 
   if (errors.length) {
     errorsDisplay = (
-      <div>
+      <div className="errors">
         <h2>Validation errors</h2>
         <div>
           <ul>
