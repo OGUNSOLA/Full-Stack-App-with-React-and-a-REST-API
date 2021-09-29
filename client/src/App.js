@@ -30,7 +30,6 @@ const HeaderWithContext = WithContext(Header);
 const UpdateCourseWithContext = WithContext(UpdateCourse);
 const DeleteCourseWithContext = WithContext(Delete);
 const CreateCourseWithContext = WithContext(CreateCourse);
-const FooterCourseWithContext = WithContext(Footer);
 
 function App() {
   return (
@@ -46,7 +45,7 @@ function App() {
             component={CreateCourseWithContext}
           />
 
-          <Route
+          <PrivateRoute
             path="/courses/:id/update"
             component={UpdateCourseWithContext}
           />

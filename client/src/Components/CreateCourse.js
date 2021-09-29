@@ -12,6 +12,7 @@ function CreateCourse({ context, history }) {
   const [materialsNeeded, setMaterialsNeeded] = useState("");
   const { username, password } = context.credentials;
   const userId = context.userId;
+  // handlers get the values in the input fields
 
   const handleCourseTitleChange = (e) => {
     setCourseTitle(e.target.value);

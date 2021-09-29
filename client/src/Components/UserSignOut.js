@@ -7,7 +7,7 @@ function UserSignOut({ context }) {
   useEffect(() => {
     console.log(context);
     context.actions.signOut();
-  }, []);
+  }, [context]);
   return (
     <div>
       <Redirect to="/"></Redirect>

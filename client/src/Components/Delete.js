@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { Link, useState } from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 
 function Delete({ context, match, history }) {

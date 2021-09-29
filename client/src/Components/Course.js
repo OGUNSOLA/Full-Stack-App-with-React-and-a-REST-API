@@ -4,6 +4,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import images from "../Images";
 
+//Course structure
+
 function Course(props) {
   const { title, estimatedTime, id } = props;
   const image_index = Math.floor(Math.random() * 16);

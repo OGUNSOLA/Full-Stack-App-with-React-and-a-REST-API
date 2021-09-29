@@ -11,7 +11,7 @@ function Courses({ context }) {
 
   useEffect(() => {
     context.data.getCourses().then((courses) => setCourses(courses));
-  }, []);
+  }, [context.data]);
   return (
     <div className="mainContent">
       <div className="coursesArea">

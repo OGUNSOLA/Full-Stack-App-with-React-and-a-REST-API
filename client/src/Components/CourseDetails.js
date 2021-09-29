@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
@@ -12,6 +11,8 @@ function CourseDetails({ context, match, history }) {
   const [lastName, setLastname] = useState("");
   const id = match.params.id;
 
+  //fetches new course data
+  // uodat and delete buttons are condtionaly rendered
   useEffect(() => {
     context.data
       .getACourse(id)
@@ -30,7 +31,7 @@ function CourseDetails({ context, match, history }) {
           history.push("/error");
         }
       });
-  }, []);
+  }, [context.data, history, id]);
   return (
     <div className="detailsWrapper">
       <div className="actions">
