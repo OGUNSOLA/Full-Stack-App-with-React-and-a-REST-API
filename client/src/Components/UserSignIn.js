@@ -13,10 +13,10 @@ export default class UserSignIn extends Component {
 
   render() {
     const { emailAddress, password, errors } = this.state;
-
+    console.log("props", this.props);
     return (
-      <div className="formArea">
-        <div className="signInFormWrapper">
+      <main>
+        <div className="form--centered">
           <h1> Sign In </h1>{" "}
           <Form
             className="form"
@@ -53,7 +53,7 @@ export default class UserSignIn extends Component {
             sign up!{" "}
           </p>{" "}
         </div>{" "}
-      </div>
+      </main>
     );
   }
 

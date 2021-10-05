@@ -135,35 +135,37 @@ router.put(
   "/courses/:id",
   authenticateUser,
   asyncHandler(async (req, res) => {
-    try {
-      const course = await Course.findByPk(req.params.id);
-      if (course) {
-        if (req.currentUser.id === course.userId) {
-          if (req.body.title !== "" && req.body.description !== "") {
-            course.update(req.body);
-            console.log("updated");
-            res.status(204).json({
-              message: "Course update successful",
-            });
+    if (authenticateUser) {
+      try {
+        const course = await Course.findByPk(req.params.id);
+        if (course) {
+          if (req.currentUser.id === course.userId) {
+            if (req.body.title !== "" && req.body.description !== "") {
+              await course.update(req.body);
+              res.status(204).json({
+                message: "Course update successful",
+              });
+            } else {
+              res
+                .status(400)
+                .json({ message: " Title and description are required" });
+            }
           } else {
-            res
-              .status(400)
-              .json({ message: " Title and description are required" });
+            res.status(403).json({ message: "Acess denied" });
           }
-        } else {
-          res.status(403).json({ message: "Acess denied" });
         }
-      }
-    } catch (error) {
-      if (error) {
-        if (
-          error.name === "SequelizeUniqueConstraintError" ||
-          error.name === "SequelizeValidationError"
-        ) {
-          const errors = error.errors.map((error) => error.message);
-          res.status(400).json({ errors });
-        } else {
-          throw error;
+      } catch (error) {
+        if (error) {
+          if (
+            error.name === "SequelizeUniqueConstraintError" ||
+            error.name === "SequelizeValidationError"
+          ) {
+            const errors = error.errors.map((error) => error.message);
+            console.log(errors);
+            res.status(400).json({ errors });
+          } else {
+            throw error;
+          }
         }
       }
     }

@@ -33,39 +33,48 @@ function CourseDetails({ context, match, history }) {
       });
   }, [context.data, history, id]);
   return (
-    <div className="detailsWrapper">
-      <div className="actions">
-        {author ? (
-          <Link to={`/courses/${course.id}/update`}>UPDATE COURSE</Link>
-        ) : null}
-        {author ? <Link to={`${course.id}/delete`}>DELETE COURSE</Link> : null}
-        <Link to="/">RETURN TO LIST</Link>
-      </div>
-      <div className="headline">
-        <h1>Course Detail</h1>
-      </div>
-      <div className="courseDetails">
-        <div className="aboutCourse">
-          <h1 className="courseHeading">COURSE</h1>
-          <h1 className="courseTitle">{course.title}</h1>
-          <h4>
-            By: {firstName} {lastName}
-          </h4>
-
-          <ReactMarkdown>{course.description}</ReactMarkdown>
-        </div>
-        <div className="otherDetails">
-          <div className="time">
-            <h1>ESTIMATED TIME </h1>
-            <h3>{course.estimatedTime}</h3>
-          </div>
-          <div className="materialsNeeded">
-            <h1>MATERIALS NEEDED</h1>
-            <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
-          </div>
+    <main>
+      <div className="actions--bar">
+        <div className="wrap">
+          {author ? (
+            <Link to={`/courses/${course.id}/update`} className="button">
+              UPDATE COURSE
+            </Link>
+          ) : null}
+          {author ? (
+            <Link to={`${course.id}/delete`} className="button">
+              DELETE COURSE
+            </Link>
+          ) : null}
+          <Link to="/" className="button button-secondary">
+            RETURN TO LIST
+          </Link>
         </div>
       </div>
-    </div>
+      <div className="wrap">
+        <h2>Course Detail</h2>
+        <form>
+          <div className="main--flex">
+            <div>
+              <h3 className="course--detail--title">Course</h3>
+              <h4 className="course--name">{course.title}</h4>
+              <p>
+                By: {firstName} {lastName}
+              </p>
+              <ReactMarkdown>{course.description}</ReactMarkdown>
+            </div>
+            <div>
+              <h3 className="course--detail--title">ESTIMATED TIME</h3>
+              <p>{course.estimatedTime}</p>
+              <h3 className="course--detail--title">MATERIALS NEEDED</h3>
+              <ul className="course--detail--list">
+                <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
+              </ul>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 }
 

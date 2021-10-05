@@ -6,12 +6,13 @@ import Form from "./Form";
 function CreateCourse({ context, history }) {
   const [errors, setErrors] = useState([]);
   const [courseTitle, setCourseTitle] = useState([]);
-  const [courseOwner, setCourseOwner] = useState([]);
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState(0);
   const [materialsNeeded, setMaterialsNeeded] = useState("");
   const { username, password } = context.credentials;
   const userId = context.userId;
+
+  console.log("context:", context);
   // handlers get the values in the input fields
 
   const handleCourseTitleChange = (e) => {
@@ -25,10 +26,6 @@ function CreateCourse({ context, history }) {
   };
   const handleMaterialsNeededChange = (e) => {
     setMaterialsNeeded(e.target.value);
-  };
-
-  const handleCourseOwnerChange = (e) => {
-    setCourseOwner(e.target.value);
   };
 
   const cancel = () => {
@@ -66,66 +63,67 @@ function CreateCourse({ context, history }) {
       });
   };
   return (
-    <div>
-      <Form
-        cancel={cancel}
-        errors={errors}
-        submit={submit}
-        submitButtonText="Create Course"
-        elements={() => (
-          <div className="createCourseWrapper">
-            <label for="courseTitle">Course Title</label>
-            <input
-              id="courseTitle"
-              name="courseTitle"
-              type="text"
-              value={courseTitle}
-              onChange={handleCourseTitleChange}
-              placeholder="Title"
-            />
-            <label for="Course Author">Course Title</label>
-            <input
-              id="courseAuthor"
-              name="courseAuthor"
-              type="text"
-              value={courseOwner}
-              onChange={handleCourseOwnerChange}
-              placeholder="Author"
-            />
-            <label for="courseDescription">CourseDescription</label>
-            <textarea
-              rows="15"
-              id="courseDescription"
-              name="courseDescription"
-              value={description}
-              onChange={handleDescriptionChange}
-              placeholder="Course Description"
-            />
-            <label for="estimatedTime">Estimated Time</label>
+    <main>
+      <div className="wrap">
+        <h2>Create Course</h2>
+        <Form
+          cancel={cancel}
+          errors={errors}
+          submit={submit}
+          submitButtonText="Create Course"
+          elements={() => (
+            <div className="main--flex">
+              <div>
+                <label htmlFor="courseTitle">Course Title</label>
+                <input
+                  id="courseTitle"
+                  name="courseTitle"
+                  type="text"
+                  value={courseTitle}
+                  onChange={handleCourseTitleChange}
+                  placeholder="Title"
+                />
+                <p>
+                  {context.author.firstName} {context.author.lastName}
+                </p>
+                <label htmlFor="courseDescription">CourseDescription</label>
+                <textarea
+                  rows="15"
+                  id="courseDescription"
+                  name="courseDescription"
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  placeholder="Course Description"
+                />
+              </div>
+              <div>
+                <label htmlFor="estimatedTime">Estimated Time</label>
 
-            <input
-              id="estimatedTime"
-              name="estimatedTime"
-              type="text"
-              value={estimatedTime}
-              onChange={handleEstimatedTimeChange}
-              placeholder="Time to complete course (ie: 14 hours)"
-            />
-            <label for="materialsNeeded">Materials Needed</label>
+                <input
+                  id="estimatedTime"
+                  name="estimatedTime"
+                  type="text"
+                  value={estimatedTime}
+                  onChange={handleEstimatedTimeChange}
+                  placeholder="Time to complete course (ie: 14 hours)"
+                />
+                <label htmlFor="materialsNeeded">Materials Needed</label>
 
-            <textarea
-              rows="10"
-              id="materialsNeeded"
-              name="materialsNeeded"
-              type="password"
-              value={materialsNeeded}
-              onChange={handleMaterialsNeededChange}
-              placeholder="Materials Needed"
-            />
-          </div>
-        )}
-      />
-    </div>
+                <textarea
+                  rows="10"
+                  id="materialsNeeded"
+                  name="materialsNeeded"
+                  type="password"
+                  value={materialsNeeded}
+                  onChange={handleMaterialsNeededChange}
+                  placeholder="Materials Needed"
+                />
+              </div>
+            </div>
+          )}
+        />
+      </div>
+    </main>
   );
 }
 

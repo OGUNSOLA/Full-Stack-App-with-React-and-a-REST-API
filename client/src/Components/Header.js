@@ -9,26 +9,33 @@ export default class Header extends Component {
     const authUser = context.authenticatedUser;
 
     return (
-      <div className="header">
-        <Link to="/">Courses</Link>
-        <nav>
-          {authUser ? (
-            <React.Fragment>
-              <span>Welcome, {authUser} !</span>
-              <Link to="/signout">Sign Out</Link>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Link className="signup" to="/signup">
-                Sign Up
-              </Link>
-              <Link className="signin" to="/signin">
-                Sign In
-              </Link>
-            </React.Fragment>
-          )}
-        </nav>
-      </div>
+      <header>
+        <div className="wrap header--flex">
+          <h1 className="header--logo">
+            {" "}
+            <Link to="/">Courses</Link>
+          </h1>
+          <nav>
+            {authUser ? (
+              <ul className="header--signedin">
+                <li>Welcome, {authUser} !</li>
+                <li>
+                  <Link to="/signout">Sign Out</Link>
+                </li>
+              </ul>
+            ) : (
+              <ul className="header--signedout">
+                <li>
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+                <li>
+                  <Link to="/signin">Sign In</Link>
+                </li>
+              </ul>
+            )}
+          </nav>
+        </div>
+      </header>
     );
   }
 }

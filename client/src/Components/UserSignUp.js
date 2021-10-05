@@ -16,60 +16,62 @@ export default class UserSignUp extends Component {
     const { firstName, lastName, emailAddress, password, errors } = this.state;
 
     return (
-      <div className="signUpWrapper">
-        <h1>Sign Up</h1>
-        <Form
-          cancel={this.cancel}
-          errors={errors}
-          submit={this.submit}
-          submitButtonText="Sign Up"
-          elements={() => (
-            <React.Fragment>
-              <label htmlFor="firstName">First name</label>
-              <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                value={firstName}
-                onChange={this.change}
-                placeholder="First name"
-              />
-              <label htmlFor="lastName">Last name</label>
+      <main>
+        <div className="form--centered">
+          <h1>Sign Up</h1>
+          <Form
+            cancel={this.cancel}
+            errors={errors}
+            submit={this.submit}
+            submitButtonText="Sign Up"
+            elements={() => (
+              <React.Fragment>
+                <label htmlFor="firstName">First name</label>
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  value={firstName}
+                  onChange={this.change}
+                  placeholder="First name"
+                />
+                <label htmlFor="lastName">Last name</label>
 
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                value={lastName}
-                onChange={this.change}
-                placeholder="Last name"
-              />
-              <label htmlFor="emailAddress">Email</label>
-              <input
-                id="emailAddress"
-                name="emailAddress"
-                type="email"
-                value={emailAddress}
-                onChange={this.change}
-                placeholder="User Name(email addresa)"
-              />
-              <label htmlFor="passwordpassword">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                value={password}
-                onChange={this.change}
-                placeholder="Password"
-              />
-            </React.Fragment>
-          )}
-        />
-        <p>
-          Already have a user account? <Link to="/signin">Click here</Link> to
-          sign in!
-        </p>
-      </div>
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  value={lastName}
+                  onChange={this.change}
+                  placeholder="Last name"
+                />
+                <label htmlFor="emailAddress">Email</label>
+                <input
+                  id="emailAddress"
+                  name="emailAddress"
+                  type="email"
+                  value={emailAddress}
+                  onChange={this.change}
+                  placeholder="User Name(email addresa)"
+                />
+                <label htmlFor="passwordpassword">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={this.change}
+                  placeholder="Password"
+                />
+              </React.Fragment>
+            )}
+          />
+          <p>
+            Already have a user account? <Link to="/signin">Click here</Link> to
+            sign in!
+          </p>
+        </div>
+      </main>
     );
   }
 

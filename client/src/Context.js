@@ -13,15 +13,18 @@ export class Provider extends Component {
       authenticatedUser: localStorage.getItem("authUser") || "",
       credentials: null,
       userId: localStorage.getItem("userId") || null,
+      author: localStorage.getItem("author") || "",
     };
   }
 
   render() {
     const { authenticatedUser } = this.state;
-    const { userId } = this.state;
+    const { userId, author } = this.state;
+
     const value = {
       authenticatedUser,
       userId,
+      author,
       data: this.data,
       actions: {
         signIn: this.signIn,
@@ -39,6 +42,7 @@ export class Provider extends Component {
 
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
+    console.log("user", user);
     const firstName = user.firstName;
     const userId = user.id;
     if (user !== null) {
@@ -46,11 +50,14 @@ export class Provider extends Component {
       localStorage.setItem("userId", userId);
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
+      localStorage.setItem("author", JSON.stringify(user));
 
       this.setState(() => {
         return {
           authenticatedUser: localStorage.authUser,
           userId: localStorage.userId,
+          author: JSON.parse(localStorage.author),
+
           credentials: {
             username: localStorage.username,
             password: localStorage.password,

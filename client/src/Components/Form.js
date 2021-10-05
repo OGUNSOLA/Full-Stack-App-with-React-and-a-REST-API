@@ -16,20 +16,18 @@ export default function Form(props) {
   }
 
   return (
-    <div className="form">
+    <>
       <ErrorsDisplay errors={errors} />
-      <form onSubmit={handleSubmit} className="formWrapper">
+      <form onSubmit={handleSubmit}>
         {elements()}
-        <div className="btns">
-          <button className="button" type="submit">
-            {submitButtonText}
-          </button>
-          <button className="button " onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
+        <button className="button" type="submit">
+          {submitButtonText}
+        </button>
+        <button className="button button-secondary" onClick={handleCancel}>
+          Cancel
+        </button>
       </form>
-    </div>
+    </>
   );
 }
 
@@ -38,15 +36,13 @@ function ErrorsDisplay({ errors }) {
 
   if (errors.length) {
     errorsDisplay = (
-      <div className="errors">
+      <div className="validation--errors">
         <h2>Validation errors</h2>
-        <div>
-          <ul>
-            {errors.map((error, i) => (
-              <li key={i}>{error}</li>
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {errors.map((error, i) => (
+            <li key={i}>{error}</li>
+          ))}
+        </ul>
       </div>
     );
   }
