@@ -45,9 +45,10 @@ function UpdateCourse({ context, history, match }) {
       .editACourse(username, password, courseId, course)
       .then((errors) => {
         if (errors.length) {
+          console.log(errors);
           setErrors(errors);
         } else {
-          history.push(`/courses/${courseId}`);
+          history.push("/");
         }
       })
       .catch((error) => {

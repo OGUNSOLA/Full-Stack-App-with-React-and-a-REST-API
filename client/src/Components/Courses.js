@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Course from "./Course";
-import plussign from "../images/plus.png";
 import { Link } from "react-router-dom";
 
 function Courses({ context }) {

@@ -17,7 +17,7 @@ import UpdateCourse from "./Components/UpdateCourse";
 import Delete from "./Components/Delete";
 import PrivateRoute from "./PrivateRoute";
 import Forbidden from "./Components/Forbidden";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 import Errors from "./Components/Errors";
 
 const UserSignInWithContext = WithContext(UserSignIn);

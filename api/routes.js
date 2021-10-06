@@ -31,7 +31,7 @@ router.post(
   asyncHandler(async (req, res) => {
     try {
       await User.create(req.body);
-      res.status(201).location("/").end();
+      res.status(201).end();
     } catch (error) {
       if (error) {
         if (
@@ -98,32 +98,31 @@ router.post(
   "/courses",
   authenticateUser,
   asyncHandler(async (req, res) => {
-    try {
-      let newCourse = {
-        title: req.body.title,
-        description: req.body.description,
-        estimatedTime: req.body.estimatedTime,
-        materialsNeeded: req.body.materialsNeeded,
-        userId: req.currentUser.id,
-      };
+    if (authenticateUser) {
+      try {
+        let newCourse = {
+          title: req.body.title,
+          description: req.body.description,
+          estimatedTime: req.body.estimatedTime,
+          materialsNeeded: req.body.materialsNeeded,
+          userId: req.currentUser.id,
+        };
 
-      await Course.create(newCourse).then((newlyCreated) => {
-        res
-          .status(201)
-          .location("/courses/" + newlyCreated.id)
-          .end();
-      });
-    } catch (error) {
-      if (error) {
-        if (
-          error.name === "SequelizeUniqueConstraintError" ||
-          error.name === "SequelizeValidationError"
-        ) {
-          const errors = error.errors.map((error) => error.message);
+        await Course.create(newCourse).then((newlyCreated) => {
+          res.status(201).location("/").end();
+        });
+      } catch (error) {
+        if (error) {
+          if (
+            error.name === "SequelizeUniqueConstraintError" ||
+            error.name === "SequelizeValidationError"
+          ) {
+            const errors = error.errors.map((error) => error.message);
 
-          res.status(400).json({ errors });
-        } else {
-          throw error;
+            res.status(400).json({ errors });
+          } else {
+            throw error;
+          }
         }
       }
     }
@@ -140,18 +139,12 @@ router.put(
         const course = await Course.findByPk(req.params.id);
         if (course) {
           if (req.currentUser.id === course.userId) {
-            if (req.body.title !== "" && req.body.description !== "") {
-              await course.update(req.body);
-              res.status(204).json({
-                message: "Course update successful",
-              });
-            } else {
-              res
-                .status(400)
-                .json({ message: " Title and description are required" });
-            }
+            await course.update(req.body);
+            res.status(204).json({
+              message: "Course update successful",
+            });
           } else {
-            res.status(403).json({ message: "Acess denied" });
+            res.status(403).history.push("/").json({ message: "Acess denied" });
           }
         }
       } catch (error) {
@@ -161,7 +154,7 @@ router.put(
             error.name === "SequelizeValidationError"
           ) {
             const errors = error.errors.map((error) => error.message);
-            console.log(errors);
+
             res.status(400).json({ errors });
           } else {
             throw error;

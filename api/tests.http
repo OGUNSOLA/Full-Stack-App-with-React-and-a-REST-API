@@ -4,11 +4,11 @@
 # Tests for the User Routes section of the rubric
 
 ### Get User (With Auth)
-GET http://localhost:3000/api/users HTTP/1.1
+GET http://localhost:3300/api/users HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 
 ### Create User
-POST http://localhost:3000/api/users HTTP/1.1
+POST http://localhost:3300/api/users HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
@@ -41,24 +41,24 @@ GET http://localhost:3300/api/courses HTTP/1.1
 GET http://localhost:3300/api/courses/2 HTTP/1.1
 
 ### Create Course (Minimum Data)
-POST http://localhost:3000/api/courses HTTP/1.1
+POST http://localhost:3300/api/courses HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
 {
-  "title": "My new course",
-  "description": "This is the course I created",
+  "title": "My new course 2",
+  "description": "This is the course I created 2",
   "userId": 1
 }
 
 ### Update Course (Minimum Data)
-PUT http://localhost:3000/api/courses/1 HTTP/1.1
+PUT http://localhost:3300/api/courses/1 HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
 {
 	"id": 1,
-  "title": "Updated course!",
+  "title": "Updated course",
   "description": "The course description has been updated as well.",
   "userId": 1
 }
@@ -68,7 +68,7 @@ DELETE http://localhost:3000/api/courses/4 HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 
 ### Update Course (Not Owner) - EXCEEDS
-PUT http://localhost:3000/api/courses/3 HTTP/1.1
+PUT http://localhost:3300/api/courses/3 HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
@@ -96,7 +96,7 @@ Content-Type: application/json
 }
 
 ### Create Course (Incomplete Data)
-POST http://localhost:3000/api/courses HTTP/1.1
+POST http://localhost:3300/api/courses HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
@@ -105,7 +105,7 @@ Content-Type: application/json
 }
 
 ### Update Course (Incomplete Data)
-PUT http://localhost:3000/api/courses/1 HTTP/1.1
+PUT http://localhost:3300/api/courses/1 HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
@@ -115,7 +115,7 @@ Content-Type: application/json
 }
 
 ### Create User (Invalid Email) - EXCEEDS
-POST http://localhost:3000/api/users HTTP/1.1
+POST http://localhost:3300/api/users HTTP/1.1
 Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 

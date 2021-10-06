@@ -13,7 +13,6 @@ export default class UserSignIn extends Component {
 
   render() {
     const { emailAddress, password, errors } = this.state;
-    console.log("props", this.props);
     return (
       <main>
         <div className="form--centered">

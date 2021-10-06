@@ -5,14 +5,13 @@ import Form from "./Form";
 
 function CreateCourse({ context, history }) {
   const [errors, setErrors] = useState([]);
-  const [courseTitle, setCourseTitle] = useState([]);
+  const [courseTitle, setCourseTitle] = useState("");
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState(0);
   const [materialsNeeded, setMaterialsNeeded] = useState("");
   const { username, password } = context.credentials;
   const userId = context.userId;
 
-  console.log("context:", context);
   // handlers get the values in the input fields
 
   const handleCourseTitleChange = (e) => {
@@ -52,7 +51,7 @@ function CreateCourse({ context, history }) {
         if (errors.length) {
           setErrors(errors);
         } else {
-          history.push("/courses");
+          history.push("/");
         }
       })
       .catch((error) => {
