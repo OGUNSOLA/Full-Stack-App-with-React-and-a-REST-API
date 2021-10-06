@@ -32,12 +32,14 @@ function CreateCourse({ context, history }) {
   };
 
   const submit = () => {
+    // create a new course object
     const course = {
       title: courseTitle,
       description,
       userId,
     };
 
+    // add materialsNeeded and estimatedTime to the course object if they are provided
     if (materialsNeeded) {
       course.materialsNeeded = materialsNeeded;
     }
@@ -58,6 +60,8 @@ function CreateCourse({ context, history }) {
         if (error.response.status === 400) {
           console.error(error);
           history.push("/error");
+        } else if (console.error.response.status === 403) {
+          history.push("/forbidden");
         }
       });
   };

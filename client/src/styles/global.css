@@ -39,9 +39,10 @@ header {
   padding: 1rem 0;
   margin-bottom: 2rem;
 }
+
 .header--flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 .header--logo a {

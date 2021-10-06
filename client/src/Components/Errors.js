@@ -4,10 +4,11 @@ import React from "react";
 
 function Errors() {
   return (
-    <div>
+    <div className="wrap">
+      <h2>Error</h2>
       <p>
         {" "}
-        <strong>An error occured !</strong>
+        <strong>Sorry! We just encountered an unexpected error.!</strong>
       </p>
     </div>
   );

@@ -17,17 +17,19 @@ function CourseDetails({ context, match, history }) {
     context.data
       .getACourse(id)
       .then((course) => {
-        setCourse(course);
-        setFirstName(course.user.firstName);
-        setLastname(course.user.lastName);
-        String(course.user.id) === String(localStorage.userId)
-          ? setAuthor(true)
-          : setAuthor(false);
+        if (course) {
+          setCourse(course);
+          setFirstName(course.user.firstName);
+          setLastname(course.user.lastName);
+          String(course.user.id) === String(localStorage.userId)
+            ? setAuthor(true)
+            : setAuthor(false);
+        } else {
+          history.push("/notfound"); // if no course is reeturned, route to not found
+        }
       })
       .catch((error) => {
-        if (error.response.status === 404) {
-          history.push("/notfound");
-        } else {
+        if (error) {
           history.push("/error");
         }
       });
@@ -67,9 +69,9 @@ function CourseDetails({ context, match, history }) {
               <h3 className="course--detail--title">ESTIMATED TIME</h3>
               <p>{course.estimatedTime}</p>
               <h3 className="course--detail--title">MATERIALS NEEDED</h3>
-              <ul className="course--detail--list">
-                <ReactMarkdown>{course.materialsNeeded}</ReactMarkdown>
-              </ul>
+              <ReactMarkdown className="course--detail--list">
+                {course.materialsNeeded}
+              </ReactMarkdown>
             </div>
           </div>
         </form>

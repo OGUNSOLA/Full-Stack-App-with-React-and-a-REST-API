@@ -3,6 +3,7 @@
 import config from "./config";
 
 export default class Data {
+  //call the api app and retrive info
   api(
     path,
     method = "GET",

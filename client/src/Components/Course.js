@@ -8,6 +8,7 @@ import images from "../Images";
 
 function Course(props) {
   const { title, estimatedTime, id } = props;
+  // use random number to retrive an image from image database
   const image_index = Math.floor(Math.random() * 16);
   return (
     <Link to={`/courses/${id}`} className="course--module course--link">

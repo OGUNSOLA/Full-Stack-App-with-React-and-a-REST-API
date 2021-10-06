@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 
 function Forbidden() {
   return (
-    <div>
-      <h1>YOU ARE NOT PERMITTED TO DO THIS </h1>
+    <div className="wrap">
+      <h2>Forbidden</h2>
+      <p>YOU ARE NOT PERMITTED TO DO THIS </p>
       <Link className="button button-secondary" to="/">
         Return to Course List
       </Link>

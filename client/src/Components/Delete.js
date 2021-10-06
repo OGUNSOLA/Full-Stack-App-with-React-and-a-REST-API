@@ -21,8 +21,12 @@ function Delete({ context, match, history }) {
         }
       })
       .catch((error) => {
-        console.error(error);
-        history.push("/error");
+        if (error.response.status === 403) {
+          history.push("forbidden");
+        } else {
+          console.error(error);
+          history.push("/error");
+        }
       });
   };
 

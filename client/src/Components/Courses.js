@@ -14,6 +14,7 @@ function Courses({ context }) {
   return (
     <main>
       <div className="wrap main--grid">
+        {/* Map through the courses array and sisplay then using the COurse component*/}
         {courses.map((course) => {
           return (
             <Course
@@ -24,6 +25,8 @@ function Courses({ context }) {
             />
           );
         })}
+
+        {/* Create course link only visible when user is authenticated  */}
         {authUser ? (
           <Link
             className="course--module course--add--module"

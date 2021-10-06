@@ -7,6 +7,8 @@ const Context = React.createContext();
 
 export class Provider extends Component {
   constructor() {
+
+    //state decalrations 
     super();
     this.data = new Data();
     this.state = {
@@ -21,6 +23,8 @@ export class Provider extends Component {
     const { authenticatedUser } = this.state;
     const { userId, author } = this.state;
 
+
+    // value to be stored in context
     const value = {
       authenticatedUser,
       userId,
@@ -45,6 +49,8 @@ export class Provider extends Component {
     const firstName = user.firstName;
     const userId = user.id;
     if (user !== null) {
+
+      // set local storage for data persistence 
       localStorage.setItem("authUser", firstName);
       localStorage.setItem("userId", userId);
       localStorage.setItem("username", username);

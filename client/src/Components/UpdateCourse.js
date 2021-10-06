@@ -59,6 +59,7 @@ function UpdateCourse({ context, history, match }) {
 
   useEffect(() => {
     let ownerId;
+    // retrieve course to update
     context.data
       .getACourse(courseId)
       .then((data) => {
@@ -70,6 +71,7 @@ function UpdateCourse({ context, history, match }) {
         return ownerId;
       })
       .then((ownerId) => {
+        // if not owner, route to forbidden
         if (String(ownerId) !== String(authUserId)) {
           history.push("/forbidden");
         }
@@ -86,14 +88,6 @@ function UpdateCourse({ context, history, match }) {
     <main>
       <div className="wrap">
         <h2>Update Course </h2>
-        {errors.length !== 0 && (
-          <div className="validation--errors">
-            <h3>Validation Errors</h3>
-            <ul>
-              <li>{errors}</li>
-            </ul>
-          </div>
-        )}
         <Form
           cancel={cancel}
           errors={errors}

@@ -31,13 +31,14 @@ export default function Form(props) {
   );
 }
 
+// if errors occur display error details as list items
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
 
   if (errors.length) {
     errorsDisplay = (
       <div className="validation--errors">
-        <h2>Validation errors</h2>
+        <h3>Validation errors</h3>
         <ul>
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
