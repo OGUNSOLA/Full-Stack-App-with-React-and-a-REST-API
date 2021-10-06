@@ -1,7 +1,7 @@
 /** @format */
 
 const config = {
-  apiBaseUrl: "http://localhost:3300/api",
+  apiBaseUrl: "http://localhost:5000/api",
 };
 
 export default config;
